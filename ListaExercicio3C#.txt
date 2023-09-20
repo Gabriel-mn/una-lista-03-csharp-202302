@@ -1,0 +1,188 @@
+class Program
+{
+    static void Main()
+    {
+        // Exercício 1
+        Console.WriteLine("Exercício 1");
+        Console.Write("Digite o primeiro número: ");
+        double numero1 = Convert.ToDouble(Console.ReadLine());
+        Console.Write("Digite o segundo número: ");
+        double numero2 = Convert.ToDouble(Console.ReadLine());
+        Console.Write("Digite o terceiro número: ");
+        double numero3 = Convert.ToDouble(Console.ReadLine());
+
+        double maior = Math.Max(numero1, Math.Max(numero2, numero3));
+        double menor = Math.Min(numero1, Math.Min(numero2, numero3));
+        double media = (numero1 + numero2 + numero3) / 3;
+
+        Console.WriteLine($"Maior número: {maior}");
+        Console.WriteLine($"Menor número: {menor}");
+        Console.WriteLine($"Média aritmética: {media}");
+
+        // Exercício 2
+        Console.WriteLine("\nExercício 2");
+        Console.Write("Valor da compra: R$ ");
+        double valorCompra = Convert.ToDouble(Console.ReadLine());
+        Console.Write("Valor pago: R$ ");
+        double valorPago = Convert.ToDouble(Console.ReadLine());
+
+        if (valorPago < valorCompra)
+        {
+            Console.WriteLine("Quantia paga é insuficiente para realizar a compra.");
+        }
+        else
+        {
+            double troco = valorPago - valorCompra;
+            Console.WriteLine($"Troco: R$ {troco:F2}");
+
+            int[] notas = { 50, 20, 10, 5, 2, 1 };
+            int[] quantidadeNotas = new int[notas.Length];
+
+            for (int i = 0; i < notas.Length; i++)
+            {
+                quantidadeNotas[i] = (int)(troco / notas[i]);
+                troco %= notas[i];
+            }
+
+            for (int i = 0; i < notas.Length; i++)
+            {
+                Console.WriteLine($"Notas de R$ {notas[i]},00: {quantidadeNotas[i]}");
+            }
+        }
+
+        // Exercício 3
+        Console.WriteLine("\nExercício 3");
+        Console.Write("Digite o coeficiente 'a': ");
+        double a = Convert.ToDouble(Console.ReadLine());
+        Console.Write("Digite o coeficiente 'b': ");
+        double b = Convert.ToDouble(Console.ReadLine());
+        Console.Write("Digite o coeficiente 'c': ");
+        double c = Convert.ToDouble(Console.ReadLine());
+
+        double delta = b * b - 4 * a * c;
+
+        if (a == 0 && b == 0)
+        {
+            Console.WriteLine("Coeficientes informados incorretamente.");
+        }
+        else if (a == 0)
+        {
+            Console.WriteLine("Essa é uma equação de primeiro grau.");
+            double raiz = -c / b;
+            Console.WriteLine($"Valor da raiz: {raiz}");
+        }
+        else if (delta < 0)
+        {
+            Console.WriteLine("Esta equação não possui raízes reais.");
+        }
+        else if (delta == 0)
+        {
+            Console.WriteLine("Esta equação possui duas raízes reais iguais.");
+            double raiz = -b / (2 * a);
+            Console.WriteLine($"Valor das raízes: {raiz}");
+        }
+        else
+        {
+            Console.WriteLine("Esta equação possui duas raízes reais diferentes.");
+            double raiz1 = (-b + Math.Sqrt(delta)) / (2 * a);
+            double raiz2 = (-b - Math.Sqrt(delta)) / (2 * a);
+            Console.WriteLine($"Valor das raízes: {raiz1} e {raiz2}");
+        }
+
+        // Exercício 4
+        Console.WriteLine("\nExercício 4");
+        Console.Write("Digite o código da operação (1 - Perímetro do círculo, 2 - Área do círculo, 3 - Volume da esfera): ");
+        int codigoOperacao = Convert.ToInt32(Console.ReadLine());
+
+        if (codigoOperacao == 1 || codigoOperacao == 2 || codigoOperacao == 3)
+        {
+            Console.Write("Digite o raio: ");
+            double raio = Convert.ToDouble(Console.ReadLine());
+
+            switch (codigoOperacao)
+            {
+                case 1:
+                    double perimetro = 2 * Math.PI * raio;
+                    Console.WriteLine($"Perímetro do círculo: {perimetro:F2}");
+                    break;
+                case 2:
+                    double area = Math.PI * raio * raio;
+                    Console.WriteLine($"Área do círculo: {area:F2}");
+                    break;
+                case 3:
+                    double volume = (4.0 / 3.0) * Math.PI * Math.Pow(raio, 3);
+                    Console.WriteLine($"Volume da esfera: {volume:F2}");
+                    break;
+            }
+        }
+        else
+        {
+            Console.WriteLine("Código da operação é inválido.");
+        }
+
+        // Exercício 5
+        Console.WriteLine("\nExercício 5");
+        Console.Write("Digite o primeiro número: ");
+        double num1 = Convert.ToDouble(Console.ReadLine());
+        Console.Write("Digite o símbolo da operação (+, -, *, / ou ^): ");
+        char operacao = Convert.ToChar(Console.ReadLine());
+        Console.Write("Digite o segundo número: ");
+        double num2 = Convert.ToDouble(Console.ReadLine());
+
+        double resultado = 0.0;
+        switch (operacao)
+        {
+            case '+':
+                resultado = num1 + num2;
+                break;
+            case '-':
+                resultado = num1 - num2;
+                break;
+            case '*':
+                resultado = num1 * num2;
+                break;
+            case '/':
+                if (num2 != 0)
+                {
+                    resultado = num1 / num2;
+                }
+                else
+                {
+                    Console.WriteLine("Erro: Divisão por zero.");
+                    return;
+                }
+                break;
+            case '^':
+                resultado = Math.Pow(num1, num2);
+                break;
+            default:
+                Console.WriteLine("Símbolo da operação inválido.");
+                return;
+        }
+
+        Console.WriteLine($"Resultado da operação: {resultado}");
+
+        // Exercício 6
+        Console.WriteLine("\nExercício 6");
+        Console.Write("Digite o primeiro número inteiro: ");
+        int numInt1 = Convert.ToInt32(Console.ReadLine());
+        Console.Write("Digite o segundo número inteiro: ");
+        int numInt2 = Convert.ToInt32(Console.ReadLine());
+
+        int menorNum = Math.Min(numInt1, numInt2);
+        int maiorNum = Math.Max(numInt1, numInt2);
+
+        Random rand = new Random();
+        int numeroSorteado = rand.Next(menorNum, maiorNum + 1);
+
+        Console.WriteLine($"Número sorteado: {numeroSorteado}");
+        if (numeroSorteado % 2 == 0)
+        {
+            Console.WriteLine("É um número par.");
+        }
+        else
+        {
+            Console.WriteLine("É um número ímpar.");
+        }
+    }
+}
